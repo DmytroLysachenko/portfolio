@@ -10,12 +10,12 @@ import Pill from "../../components/Pill.astro";
 import { render } from "astro:content";
 
 interface Props {
-  entry: CollectionEntry<"work">;
+  entry: CollectionEntry<"project">;
 }
 
 export async function getStaticPaths() {
-  const work = await getCollection("work");
-  return work.map((entry) => ({
+  const project = await getCollection("project");
+  return project.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
   }));
@@ -35,7 +35,7 @@ const { Content } = await render(entry);
         <div class="wrapper stack gap-2">
           <a
             class="back-link"
-            href="/work/"
+            href="/project/"
             ><Icon icon="arrow-left" /> Work</a
           >
           <Hero
@@ -43,10 +43,10 @@ const { Content } = await render(entry);
             align="start"
           >
             <div class="details">
+              <p class="description">{entry.data.description}</p>
               <div class="tags">
                 {entry.data.tags.map((t) => <Pill>{t}</Pill>)}
               </div>
-              <p class="description">{entry.data.description}</p>
             </div>
           </Hero>
         </div>
@@ -92,7 +92,9 @@ const { Content } = await render(entry);
 
   .tags {
     display: flex;
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    min-width: 300px;
   }
 
   .description {
@@ -115,6 +117,11 @@ const { Content } = await render(entry);
   .content :global(h4),
   .content :global(h5) {
     margin: 1.5rem 0;
+  }
+
+  .content :global(h4) {
+    margin-bottom: 2rem;
+    margin-top: 4rem;
   }
 
   .content :global(img) {
