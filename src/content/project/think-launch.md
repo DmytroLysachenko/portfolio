@@ -63,11 +63,6 @@ tags:
 - **Problem**: Managing a scalable content system without a complex backend.
 - **Solution**: Leveraged **Sanity CMS**, allowing for dynamic content management, live fetching, and real-time updates without requiring direct database management.
 
-##### Implementing Playlist Feature for Startup Organization
-
-- **Problem**: Allowing users to save and categorize startups effectively.
-- **Solution**: Designed a **custom playlist system**, enabling users to curate and manage their favorite startups within the app.
-
 ##### Authentication & User Management with GitHub OAuth
 
 - **Problem**: Providing a secure yet simple authentication system for entrepreneurs.
