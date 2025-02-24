@@ -12,6 +12,7 @@ import PortfolioPreview from "../components/PortfolioPreview.astro";
 
 import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
+import technologies from "../data/technologies";
 
 const projects = (await getCollection("project"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
@@ -24,7 +25,7 @@ const projects = (await getCollection("project"))
       <header class="hero">
         <Hero
           title="Hello, my name is Dmytro Lysachenko"
-          tagline="I am a Creative Developer who is currently based in Portland, Oregon."
+          tagline="I am a Creative Developer who is currently based in Bydgoszcz, Poland."
           align="start"
         >
           <div class="roles">
@@ -32,19 +33,7 @@ const projects = (await getCollection("project"))
               ><Icon
                 icon="code"
                 size="1.33em"
-              /> Developer</Pill
-            >
-            <Pill
-              ><Icon
-                icon="microphone-stage"
-                size="1.33em"
-              /> Speaker</Pill
-            >
-            <Pill
-              ><Icon
-                icon="pencil-line"
-                size="1.33em"
-              /> Writer</Pill
+              />Developer</Pill
             >
           </div>
         </Hero>
@@ -92,29 +81,30 @@ const projects = (await getCollection("project"))
 
       <section class="section with-background bg-variant">
         <header class="section-header stack gap-2 lg:gap-4">
-          <h3>Mentions</h3>
-          <p>
-            I have been fortunate enough to receive praise for my project in
-            several publications. Take a look below to learn more.
-          </p>
+          <h3>Tech Stack</h3>
+          <p>Here is the tech stack I'm currently working with.</p>
         </header>
 
         <div class="gallery">
-          <Grid variant="small">
-            {
-              [
-                "Medium",
-                "BuzzFeed",
-                "The Next Web",
-                "awwwards.",
-                "TechCrunch",
-              ].map((brand) => (
-                <li class="mention-card">
-                  <p>{brand}</p>
-                </li>
-              ))
-            }
-          </Grid>
+          {
+            technologies.map((category) => (
+              <div class="category">
+                <h2>{category.category}</h2>
+                <ul class="tech-list">
+                  {category.items.map((tech) => (
+                    <li class="tech-card">
+                      <img
+                        src={tech.icon}
+                        alt={tech.name}
+                        class="tech-icon"
+                      />
+                      <p>{tech.name}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
         </div>
       </section>
     </main>
@@ -265,5 +255,59 @@ const projects = (await getCollection("project"))
       border-radius: 1.5rem;
       height: 9.5rem;
     }
+  }
+
+  /* Category Heading */
+
+  .category {
+    margin-bottom: 4rem;
+  }
+
+  .category h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+  }
+
+  /* Tech Card */
+  .tech-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--gradient-subtle);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Tech Icon */
+  .tech-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+  }
+
+  /* Tech Name */
+  .tech-card p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 </style>
