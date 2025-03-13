@@ -1,6 +1,6 @@
 ---
 title: LiveEditor
-publishDate: 2025-02-15 00:00:00
+publishDate: 2025-02-01 00:00:00
 img: /assets/live-editor.png
 img_alt: A screenshot of a collaborative document editing interface with real-time updates and presence indicators.
 description: |

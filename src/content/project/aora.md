@@ -1,6 +1,6 @@
 ---
 title: Aora
-publishDate: 2025-02-09 00:00:00
+publishDate: 2025-01-01 00:00:00
 img: /assets/aora-preview.jpg
 img_alt: A mobile app interface displaying AI-generated video content.
 description: |

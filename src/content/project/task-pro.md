@@ -1,6 +1,6 @@
 ---
 title: TaskPro Backend
-publishDate: 2025-02-15 00:00:00
+publishDate: 2024-08-26 00:00:00
 img: /assets/taskpro-backend.png
 img_alt: API documentation showcasing endpoints for authentication, task management, and mailing services.
 description: |

@@ -1,6 +1,6 @@
 ---
 title: ThinkLaunch
-publishDate: 2025-02-15 00:00:00
+publishDate: 2025-01-15 00:00:00
 img: /assets/think-launch.png
 img_alt: A web app interface displaying startup pitches and curated collections for entrepreneurs.
 description: |

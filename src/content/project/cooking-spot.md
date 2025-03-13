@@ -22,14 +22,14 @@ A dedicated profile section allows users to manage their liked and rated recipes
 
 ##### Links
 
-- **Live Page**: [Cooking Spot Vercel deployment](https://your-live-site-url.com)
-- **GitHub Repository**: [View on GitHub](https://github.com/your-username/cooking-spot)
+- **Live Page**: [Cooking Spot Vercel deployment](https://astro-cookbook-sable.vercel.app/)
+- **GitHub Repository**: [View on GitHub](https://github.com/DmytroLysachenko/astro-cookbook)
 
 > #### Technical Implementation
 
 ##### Tech Stack
 
-- **Frontend**: Astro v5, React, Tailwind CSS, shadcn/ui
+- **Frontend**: Astro v5, React, Tailwind CSS, Shadcn/ui
 - **Backend**: Astro API routes, PostgreSQL (Neon DB), Drizzle ORM
 - **Authentication**: OAuth with Google, Facebook, and GitHub via Auth.js
 - **Media Handling**: ImageKit for avatar storage and file uploads
