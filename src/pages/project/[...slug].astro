@@ -73,7 +73,7 @@ const { Content } = await render(entry);
 
 <style>
   header {
-    padding-bottom: 2.5rem;
+    padding-bottom: 3.5rem; /* Increased */
     border-bottom: 1px solid var(--gray-800);
   }
 
@@ -84,8 +84,8 @@ const { Content } = await render(entry);
   .details {
     display: flex;
     flex-direction: column;
-    padding: 0.5rem;
-    gap: 1.5rem;
+    padding: 1rem; /* Increased */
+    gap: 2rem; /* Increased */
     justify-content: space-between;
     align-items: center;
   }
@@ -93,22 +93,23 @@ const { Content } = await render(entry);
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.5rem; /* Increased */
     min-width: 300px;
   }
 
   .description {
-    font-size: var(--text-lg);
-    max-width: 54ch;
+    font-size: var(--text-xl); /* Increased */
+    max-width: 67ch;
   }
 
   .content {
-    max-width: 65ch;
+    max-width: 77ch;
     margin-inline: auto;
+    font-size: var(--text-md);
   }
 
   .content > :global(* + *) {
-    margin-top: 1rem;
+    margin-top: 1.5rem; /* Increased */
   }
 
   .content :global(h1),
@@ -116,28 +117,28 @@ const { Content } = await render(entry);
   .content :global(h3),
   .content :global(h4),
   .content :global(h5) {
-    margin: 1.5rem 0;
+    margin: 2rem 0; /* Increased */
   }
 
   .content :global(h4) {
-    margin-bottom: 2rem;
-    margin-top: 4rem;
+    margin-bottom: 3rem; /* Increased */
+    margin-top: 5rem; /* Increased */
   }
 
   .content :global(img) {
-    border-radius: 1.5rem;
+    border-radius: 2rem; /* Increased */
     box-shadow: var(--shadow-sm);
     background: var(--gradient-subtle);
     border: 1px solid var(--gray-800);
   }
 
   .content :global(blockquote) {
-    font-size: var(--text-lg);
+    font-size: var(--text-2xl); /* Increased */
     font-family: var(--font-brand);
     font-weight: 600;
     line-height: 1.1;
-    padding-inline-start: 1.5rem;
-    border-inline-start: 0.25rem solid var(--accent-dark);
+    padding-inline-start: 2rem; /* Increased */
+    border-inline-start: 0.5rem solid var(--accent-dark); /* Increased */
     color: var(--gray-0);
   }
 
@@ -163,11 +164,11 @@ const { Content } = await render(entry);
 
     .details {
       flex-direction: row;
-      gap: 2.5rem;
+      gap: 3rem; /* Increased */
     }
 
     .content :global(blockquote) {
-      font-size: var(--text-2xl);
+      font-size: var(--text-3xl); /* Increased */
     }
   }
 </style>

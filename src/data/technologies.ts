@@ -22,7 +22,9 @@ const technologies = [
     items: [
       { name: "MongoDB", icon: "/icons/databases/MongoDB.png" },
       { name: "PostgreSQL", icon: "/icons/databases/PostgresSQL.png" },
-      { name: "Redis", icon: "/icons/databases/SQLite.png" },
+      { name: "SQLite", icon: "/icons/databases/SQLite.png" },
+      { name: "Prisma ORM", icon: "/icons/databases/prisma.png" },
+      { name: "Drizzle ORM", icon: "/icons/databases/drizzle.svg" },
     ],
   },
   {
@@ -32,7 +34,16 @@ const technologies = [
       { name: "Git", icon: "/icons/instruments/Git.png" },
       { name: "Jira", icon: "/icons/instruments/Jira.png" },
       { name: "Trello", icon: "/icons/instruments/Trello.png" },
+      { name: "Slack", icon: "/icons/instruments/Slack.png" },
+      { name: "NPM", icon: "/icons/instruments/NPM.png" },
       { name: "VSC", icon: "/icons/instruments/VSC.png" },
+    ],
+  },
+  {
+    category: "Testing",
+    items: [
+      { name: "Jest", icon: "/icons/testing/Jest.png" },
+      { name: "PlayWright", icon: "/icons/testing/playwright.png" },
     ],
   },
 ];
