@@ -48,7 +48,7 @@ const technologies = [
       { name: "Slack", icon: "/icons/instruments/Slack.png" },
       { name: "NPM", icon: "/icons/instruments/NPM.png" },
       { name: "VSC", icon: "/icons/instruments/VSC.png" },
-      { name: "Webpack", icon: "/icons/instruments/Webpack.png" },
+      { name: "Turbopack", icon: "/icons/instruments/turbopack.png" },
       { name: "Vite", icon: "/icons/instruments/Vite.js.png" },
     ],
   },
