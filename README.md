@@ -24,46 +24,9 @@ The portfolio consists of:
 ## 🏗 Tech Stack
 
 - **Framework**: Astro
-- **Styling**: Tailwind CSS
+- **Styling**: CSS
 - **Project Content**: Markdown (.md) with Astro Collections
 - **Hosting**: Vercel
-- **Code Quality**: ESLint & Prettier
-
-## 📂 Project Structure
-
-```
-/portfolio
-│── /src
-│   ├── /components  # Reusable UI components
-│   ├── /pages       # Astro pages (Home, About, Projects)
-│   ├── /layouts     # Page layouts
-│   ├── /content     # Markdown-based project collection
-│   ├── /styles      # Tailwind CSS styles
-│── /public          # Static assets
-│── astro.config.mjs # Astro configuration
-│── package.json     # Dependencies & scripts
-│── tsconfig.json    # TypeScript configuration
-```
-
-## ⚡ Setup & Installation
-
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/your-username/portfolio.git
-   cd portfolio
-   ```
-2. **Install dependencies:**
-   ```sh
-   pnpm install  # or npm install / yarn install
-   ```
-3. **Run the development server:**
-   ```sh
-   pnpm dev  # Starts Astro's local development server
-   ```
-4. **Build for production:**
-   ```sh
-   pnpm build  # Generates static output
-   ```
 
 ## 🛠 Key Functionalities
 
@@ -83,18 +46,14 @@ The portfolio consists of:
 - Background and professional journey
 - Skills and tech stack overview
 
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## 📬 Contact
 
 Want to connect? Reach out to me:
 
-- **GitHub**: [your-username](https://github.com/your-username)
-- **LinkedIn**: [your-profile](https://linkedin.com/in/your-profile)
-- **Email**: your-email@example.com
+- **GitHub**: [Dmytro Lysachenko](https://github.com/DmytroLysachenko)
+- **LinkedIn**: [Dmytro Lysachenko](https://www.linkedin.com/in/dmytro-lysachenko/)
 
 ---
 
-Made with ❤️ using Astro & Tailwind CSS 🚀
+Made with ❤️ using Astro
