@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.2.5"
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.2.5",
+    "dotenv": "^16.4.7"
   }
 }
