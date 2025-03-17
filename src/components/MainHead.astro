@@ -2,14 +2,20 @@
 import "../styles/global.css";
 
 interface Props {
-  title?: string | undefined;
-  description?: string | undefined;
+  title?: string;
+  description?: string;
+  image?: string;
 }
 
 const {
   title = "Dmytro Lysachenko | Professional Portfolio",
   description = "A professional portfolio showcasing my skills, projects, and experience in web and mobile development.",
+  image = "seo-preview.png",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!-- Basic Meta Tags -->
@@ -20,7 +26,6 @@ const {
 />
 <meta
   name="description"
-  property="og:description"
   content={description}
 />
 <meta
@@ -35,10 +40,15 @@ const {
 <!-- Canonical URL -->
 <link
   rel="canonical"
-  href={import.meta.env.BASE_URL}
+  href={canonicalURL}
 />
 
 <!-- Open Graph (Facebook) Meta Tags -->
+
+<meta
+  property="og:type"
+  content="website"
+/>
 <meta
   property="og:title"
   content={title}
@@ -48,16 +58,12 @@ const {
   content={description}
 />
 <meta
-  property="og:type"
-  content="website"
-/>
-<meta
   property="og:url"
-  content={import.meta.env.BASE_URL}
+  content={canonicalURL}
 />
 <meta
   property="og:image"
-  content={`${import.meta.env.BASE_URL}/seo-preview.png`}
+  content={imageURL}
 />
 <meta
   property="og:site_name"
@@ -79,7 +85,7 @@ const {
 />
 <meta
   name="twitter:image"
-  content={`${import.meta.env.BASE_URL}/seo-preview.png`}
+  content={imageURL}
 />
 <meta
   name="twitter:site"
@@ -102,7 +108,7 @@ const {
 
 <link
   rel="sitemap"
-  href={`${import.meta.env.BASE_URL}/sitemap-index.xml`}
+  href={new URL("sitemap-index.xml", Astro.site)}
 />
 
 <meta
