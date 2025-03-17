@@ -1,6 +1,6 @@
 # 🌟 My Portfolio Website
 
-![Portfolio Screenshot](/public/preview.png) <!-- Replace with actual screenshot URL -->
+![Portfolio Screenshot](/public/preview-screenshot.png) <!-- Replace with actual screenshot URL -->
 
 ## 🚀 Overview
 
@@ -45,7 +45,6 @@ The portfolio consists of:
 
 - Background and professional journey
 - Skills and tech stack overview
-
 
 ## 📬 Contact
 
