@@ -38,6 +38,8 @@ const technologies = [
   {
     category: "Instrumentation",
     items: [
+      { name: "Redux Toolkit", icon: "/icons/instruments/Redux.png" },
+      { name: "Tanstack query", icon: "/icons/instruments/TanstackQuery.png" },
       { name: "GitHub", icon: "/icons/instruments/GitHub.png" },
       { name: "Git", icon: "/icons/instruments/Git.png" },
       { name: "GitLab", icon: "/icons/instruments/GitLab.png" },
