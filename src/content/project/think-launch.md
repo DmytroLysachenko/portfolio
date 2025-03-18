@@ -1,7 +1,7 @@
 ---
 title: ThinkLaunch
 publishDate: 2025-01-15 00:00:00
-img: /assets/think-launch.png
+img: /assets/think-launch.webp
 img_alt: A web app interface displaying startup pitches and curated collections for entrepreneurs.
 description: |
   ThinkLaunch is a platform for pitching startups and connecting entrepreneurs. Built with Next.js 15 and TypeScript, the app provides a dynamic space for users to showcase and explore startups while leveraging modern web technologies.

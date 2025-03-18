@@ -1,7 +1,7 @@
 ---
 title: Money Guard
 publishDate: 2024-03-13
-img: /assets/money-guard.png
+img: /assets/money-guard.webp
 img_alt: A finance tracking web application interface with charts, expense breakdowns, and user insights.
 description: |
   Money Guard is a modern web application for tracking users' income and expenses statistics. It features interactive financial charts, dynamic reports, and a seamless user experience. Built with React.js and Vite, the project ensures fast performance and a smooth UI.

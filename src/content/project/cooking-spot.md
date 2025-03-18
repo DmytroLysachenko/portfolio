@@ -1,7 +1,7 @@
 ---
 title: Cooking Spot
 publishDate: 2025-03-13 00:00:00
-img: /assets/cooking-spot.png
+img: /assets/cooking-spot.webp
 img_alt: A modern recipe website interface with sorting, filtering, and interactive user features.
 description: |
   Cooking Spot is a highly optimized and interactive recipe website built with Astro v5. It leverages Astro's hybrid rendering capabilities to deliver an ultra-fast, SEO-friendly experience while maintaining dynamic features for user engagement.

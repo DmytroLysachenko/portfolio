@@ -1,7 +1,7 @@
 ---
 title: TaskPro Backend
 publishDate: 2024-08-26 00:00:00
-img: /assets/taskpro-backend.png
+img: /assets/taskpro-backend.webp
 img_alt: API documentation showcasing endpoints for authentication, task management, and mailing services.
 description: |
   TaskPro Backend is a fully functional backend server designed to power Trello/Jira-like task management applications. Built with Node.js, TypeScript, and Express.js, it provides secure authentication, comprehensive CRUD operations, and mailing services for seamless user interactions.
