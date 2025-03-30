@@ -51,6 +51,7 @@ const isCurrentPage = (href: string) => {
       />
       Dmytro Lysachenko
     </a>
+
     <menu-button>
       <template>
         <button
@@ -58,11 +59,13 @@ const isCurrentPage = (href: string) => {
           aria-expanded="false"
         >
           <span class="sr-only">Menu</span>
+
           <Icon icon="list" />
         </button>
       </template>
     </menu-button>
   </div>
+
   <noscript>
     <ul class="nav-items">
       {
@@ -80,6 +83,7 @@ const isCurrentPage = (href: string) => {
       }
     </ul>
   </noscript>
+
   <noscript>
     <div class="menu-footer">
       <div class="socials">
@@ -97,6 +101,7 @@ const isCurrentPage = (href: string) => {
       </div>
     </div>
   </noscript>
+
   <div
     id="menu-content"
     hidden
@@ -116,6 +121,7 @@ const isCurrentPage = (href: string) => {
         ))
       }
     </ul>
+
     <div class="menu-footer">
       <div class="socials">
         {
