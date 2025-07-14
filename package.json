@@ -11,6 +11,6 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^5.2.5",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.5.0"
   }
 }
