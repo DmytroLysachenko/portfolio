@@ -72,6 +72,12 @@ const { Content } = await render(entry);
 </BaseLayout>
 
 <style>
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   header {
     padding-bottom: 3.5rem;
     border-bottom: 1px solid var(--gray-800);
@@ -159,6 +165,7 @@ const { Content } = await render(entry);
     .back-link {
       display: block;
       align-self: flex-start;
+      margin-bottom: 2rem;
     }
 
     .details {
