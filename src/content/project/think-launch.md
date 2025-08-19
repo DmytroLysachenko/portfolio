@@ -7,6 +7,7 @@ description: |
   ThinkLaunch is a platform for pitching startups and connecting entrepreneurs. Built with Next.js 15 and TypeScript, the app provides a dynamic space for users to showcase and explore startups while leveraging modern web technologies.
 tags:
   - Web Application
+  - Full-Stack Development
   - TypeScript
   - Next.js
   - Sanity CMS

@@ -7,6 +7,7 @@ description: |
   Aora is a cross-platform mobile application designed for sharing AI-generated videos. Developed as a personal project, it serves as a learning experience in modern mobile development with React Native and Expo while exploring scalable app architecture.
 tags:
   - Mobile App
+  - Full-Stack Development
   - TypeScript
   - React Native
   - Pet Project

@@ -7,6 +7,7 @@ description: |
   LiveEditor is a real-time collaborative document editor designed for seamless creation, sharing, and collaboration. The platform enables users to edit documents simultaneously, with support for comments, versioning, and notifications.
 tags:
   - Web Application
+  - Full-Stack Development
   - TypeScript
   - Next.js
   - Pet Project
