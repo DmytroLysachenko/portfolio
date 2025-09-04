@@ -93,14 +93,16 @@ const projects = (await getCollection("project"))
                 <ul class="tech-list">
                   {category.items.map((tech) => (
                     <li class="tech-card">
-                      <img
-                        src={tech.icon}
-                        alt={tech.name}
-                        width={40}
-                        height={40}
-                        class="tech-icon"
-                        loading="lazy"
-                      />
+                      <div class={tech.background ? "background" : ""}>
+                        <img
+                          src={tech.icon}
+                          alt={tech.name}
+                          width={40}
+                          height={40}
+                          class="tech-icon"
+                          loading="lazy"
+                        />
+                      </div>
                       <p>{tech.name}</p>
                     </li>
                   ))}
@@ -292,6 +294,21 @@ const projects = (await getCollection("project"))
   .tech-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .tech-card {
+    .background {
+      background-color: var(--gray-100-only-dark);
+      border-radius: 25%;
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
   }
 
   /* Tech Icon */

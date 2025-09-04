@@ -83,6 +83,7 @@
 :root.theme-dark {
   --gray-0: #ffffff;
   --gray-50: #f3f4f7;
+  --gray-100-only-dark: #ffffffbd;
   --gray-100: #e3e6ee;
   --gray-200: #c3cadb;
   --gray-300: #a3acc8;
