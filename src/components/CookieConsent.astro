@@ -2,7 +2,6 @@
 
 ---
 
-<!-- Hidden by default; script will toggle visibility based on localStorage -->
 <section
   id="cc-banner"
   class="cc-banner"
@@ -35,57 +34,69 @@
 </section>
 
 <script>
-  import { GTM_ID } from "astro:env/client";
+  // Reuse the gtag shim set in <head>; ensure it exists
+  window.dataLayer = window.dataLayer || [];
+  window.gtag =
+    window.gtag ||
+    function () {
+      dataLayer.push(arguments);
+    };
 
-  // Minimal, framework-free helper to inject official snippets when allowed.
+  function updateConsent(consent) {
+    gtag("consent", "update", consent);
+  }
+
   const KEY = "cookiesConsent";
-  const banner = document.getElementById("cc-banner") as HTMLDivElement;
-  const accepted = localStorage.getItem(KEY) === "true";
+  const storedConsent = localStorage.getItem(KEY);
 
-  function injectGTM(id: string) {
-    // Official GTM snippet (head): https://support.google.com/tagmanager/answer/15756616
-    if (!id || document.getElementById("gtm-script")) return;
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", id);
-  }
-
-  function applyConsent(allow: boolean) {
-    localStorage.setItem(KEY, allow ? "true" : "false");
-    if (allow) {
-      // Load whichever IDs you provided
-
-      if (GTM_ID) injectGTM(GTM_ID);
-      // Hide banner
-      if (banner) banner.hidden = true;
-    } else {
-      // Keep banner hidden (user chose decline); do not load any tags
-      if (banner) banner.hidden = true;
-    }
-  }
-
-  // Initial UI state
-  if (!accepted) {
-    banner.hidden = false;
+  if (storedConsent === "true") {
+    updateConsent({
+      analytics_storage: "granted",
+      ad_storage: "granted",
+      ad_user_data: "granted",
+      ad_personalization: "granted",
+    });
+  } else if (storedConsent === "false") {
+    updateConsent({
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
   } else {
-    // Already accepted on a previous visit: load tags immediately
-    if (GTM_ID) injectGTM(GTM_ID);
+    // show banner
+    const banner = document.getElementById("cc-banner");
+    if (banner) banner.hidden = false;
   }
 
-  // Wire buttons (no extra DOM injections)
   const btnAccept = document.getElementById("cc-accept");
   const btnDecline = document.getElementById("cc-decline");
-  if (btnAccept) btnAccept.addEventListener("click", () => applyConsent(true));
+
+  if (btnAccept)
+    btnAccept.addEventListener("click", () => {
+      localStorage.setItem(KEY, "true");
+      const banner = document.getElementById("cc-banner");
+      if (banner) banner.hidden = true;
+      updateConsent({
+        analytics_storage: "granted",
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+      });
+    });
 
   if (btnDecline)
-    btnDecline.addEventListener("click", () => applyConsent(false));
+    btnDecline.addEventListener("click", () => {
+      localStorage.setItem(KEY, "false");
+      const banner = document.getElementById("cc-banner");
+      if (banner) banner.hidden = true;
+      updateConsent({
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+    });
 </script>
 
 <style>
