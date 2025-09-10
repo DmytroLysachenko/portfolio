@@ -1,0 +1,179 @@
+---
+
+---
+
+<!-- Hidden by default; script will toggle visibility based on localStorage -->
+<section
+  id="cc-banner"
+  class="cc-banner"
+  hidden
+>
+  <div class="cc-inner">
+    <div>
+      <div class="cc-title">We use cookies</div>
+      <p class="cc-text">
+        I use simple Google analytics to learn what content interests visitors
+        most and make this portfolio even better. You are free to decline, no
+        pressure :)
+      </p>
+    </div>
+    <div class="cc-actions">
+      <button
+        id="cc-decline"
+        class="btn btn-outline"
+        type="button"
+        >Decline</button
+      >
+      <button
+        id="cc-accept"
+        class="btn btn-primary"
+        type="button"
+        >Accept</button
+      >
+    </div>
+  </div>
+</section>
+
+<script>
+  import { GA4_ID, GTM_ID } from "astro:env/client";
+
+  // Minimal, framework-free helper to inject official snippets when allowed.
+  const KEY = "cookiesConsent";
+  const banner = document.getElementById("cc-banner");
+  const accepted = localStorage.getItem(KEY) === "true";
+
+  function injectGA4(id: string) {
+    // Official GA4 snippet: https://developers.google.com/analytics/devguides/collection/ga4/tag-options
+    if (!id || document.getElementById("ga4-script")) return;
+
+    const s1 = document.createElement("script");
+    s1.id = "ga4-script";
+    s1.async = true;
+    s1.src =
+      "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
+    document.head.appendChild(s1);
+
+    // Inline bootstrap
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", id);
+  }
+
+  function injectGTM(id: string) {
+    // Official GTM snippet (head): https://support.google.com/tagmanager/answer/15756616
+    if (!id || document.getElementById("gtm-script")) return;
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != "dataLayer" ? "&l=" + l : "";
+      j.async = true;
+      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", id);
+  }
+
+  function applyConsent(allow: boolean) {
+    localStorage.setItem(KEY, allow ? "true" : "false");
+    if (allow) {
+      // Load whichever IDs you provided
+      if (GA4_ID) injectGA4(GA4_ID);
+
+      if (GTM_ID) injectGTM(GTM_ID);
+      // Hide banner
+      if (banner) banner.hidden = true;
+    } else {
+      // Keep banner hidden (user chose decline); do not load any tags
+      if (banner) banner.hidden = true;
+    }
+  }
+
+  // Initial UI state
+  if (!accepted) {
+    banner.hidden = false;
+  } else {
+    // Already accepted on a previous visit: load tags immediately
+    if (GA4_ID) injectGA4(GA4_ID);
+    if (GTM_ID) injectGTM(GTM_ID);
+  }
+
+  // Wire buttons (no extra DOM injections)
+  const btnAccept = document.getElementById("cc-accept");
+  const btnDecline = document.getElementById("cc-decline");
+  if (btnAccept) btnAccept.addEventListener("click", () => applyConsent(true));
+
+  if (btnDecline)
+    btnDecline.addEventListener("click", () => applyConsent(false));
+</script>
+
+<style>
+  /* minimal styling, reusing your design tokens */
+  .cc-banner {
+    position: fixed;
+    inset-inline: 1rem;
+    bottom: 1rem;
+    z-index: 9999;
+    max-width: 56rem;
+    margin-inline: auto;
+    background: var(--gray-900);
+    color: var(--gray-200);
+    border: 1px solid var(--gray-600);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lg);
+  }
+  .cc-inner {
+    padding: 1rem 1.25rem;
+    display: grid;
+    gap: 0.75rem;
+  }
+  @media (min-width: 50em) {
+    .cc-inner {
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+  .cc-title {
+    font-family: var(--font-brand);
+    color: var(--gray-100);
+    font-size: var(--text-lg);
+    margin-bottom: 0.25rem;
+  }
+  .cc-text {
+    font-size: var(--text-sm);
+    opacity: 0.95;
+  }
+  .cc-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+  .btn {
+    border: 1px solid transparent;
+    border-radius: 0.75rem;
+    padding: 0.6rem 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--theme-transition);
+    font-family: var(--font-body);
+    box-shadow: var(--shadow-sm);
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+  .btn-outline {
+    background: transparent;
+    border-color: var(--gray-600);
+    color: var(--gray-100);
+  }
+  .btn-primary {
+    background: var(--gradient-accent);
+    color: var(--accent-text-over);
+    border-color: var(--gray-600);
+  }
+</style>

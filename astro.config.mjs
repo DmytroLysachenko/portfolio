@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, envField } from "astro/config";
 import dotenv from "dotenv";
 import sitemap from "@astrojs/sitemap";
 
@@ -11,5 +11,11 @@ const site = process.env.BASE_URL;
 export default defineConfig({
   site,
   trailingSlash: "ignore",
+  env: {
+    schema: {
+      GTM_ID: envField.string({ context: "client", access: "public" }),
+      GA4_ID: envField.string({ context: "client", access: "public" }),
+    },
+  },
   integrations: [sitemap()],
 });
