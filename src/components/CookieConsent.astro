@@ -35,33 +35,12 @@
 </section>
 
 <script>
-  import { GA4_ID, GTM_ID } from "astro:env/client";
+  import { GTM_ID } from "astro:env/client";
 
   // Minimal, framework-free helper to inject official snippets when allowed.
   const KEY = "cookiesConsent";
-  const banner = document.getElementById("cc-banner");
+  const banner = document.getElementById("cc-banner") as HTMLDivElement;
   const accepted = localStorage.getItem(KEY) === "true";
-
-  function injectGA4(id: string) {
-    // Official GA4 snippet: https://developers.google.com/analytics/devguides/collection/ga4/tag-options
-    if (!id || document.getElementById("ga4-script")) return;
-
-    const s1 = document.createElement("script");
-    s1.id = "ga4-script";
-    s1.async = true;
-    s1.src =
-      "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(id);
-    document.head.appendChild(s1);
-
-    // Inline bootstrap
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    window.gtag = gtag;
-    gtag("js", new Date());
-    gtag("config", id);
-  }
 
   function injectGTM(id: string) {
     // Official GTM snippet (head): https://support.google.com/tagmanager/answer/15756616
@@ -82,7 +61,6 @@
     localStorage.setItem(KEY, allow ? "true" : "false");
     if (allow) {
       // Load whichever IDs you provided
-      if (GA4_ID) injectGA4(GA4_ID);
 
       if (GTM_ID) injectGTM(GTM_ID);
       // Hide banner
@@ -98,7 +76,6 @@
     banner.hidden = false;
   } else {
     // Already accepted on a previous visit: load tags immediately
-    if (GA4_ID) injectGA4(GA4_ID);
     if (GTM_ID) injectGTM(GTM_ID);
   }
 

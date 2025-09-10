@@ -14,7 +14,6 @@ export default defineConfig({
   env: {
     schema: {
       GTM_ID: envField.string({ context: "client", access: "public" }),
-      GA4_ID: envField.string({ context: "client", access: "public" }),
     },
   },
   integrations: [sitemap()],
