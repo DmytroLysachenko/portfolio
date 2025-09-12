@@ -128,6 +128,8 @@ const isCurrentPage = (href: string) => {
           iconLinks.map(({ href, icon, label }) => (
             <a
               href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               class="social"
             >
               <span class="sr-only">{label}</span>
