@@ -1,61 +1,42 @@
 ---
 import Icon from "../Icon.astro";
+import { certificates, type ICertificateItem } from "../../data/certificates";
 ---
 
 <section>
   <h2 class="section-title">Certifications</h2>
   <div class="content">
     <ul>
-      <li>
-        EF SET English C2 level certificate <a
-          href="https://cert.efset.org/hMHpjX"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><Icon icon="link" /></a
-        >
-      </li>
-      <li>
-        Bootcamp Fullstack Developer course completion certificate <a
-          href="/certificates/dmytro_lysachenko_fullstack_cert.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><Icon icon="link" /></a
-        >
-      </li>
-      <li>
-        IBM Generative AI for Software Developers career certificate <a
-          href="/certificates/course-era-gen-ai.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          ><Icon icon="link" /></a
-        >
-        <ul>
+      {
+        certificates.map((item) => (
           <li>
-            Generative AI: Introduction and Applications <a
-              href="/certificates/coursera-ai-introduction.pdf"
+            {item.name}
+            <a
+              href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              ><Icon icon="link" /></a
             >
+              <Icon icon="link" />
+            </a>
+            {item.children?.length ? (
+              <ul>
+                {item.children.map((item) => (
+                  <li>
+                    {item.name}
+                    <a
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon icon="link" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </li>
-          <li>
-            Generative AI: Prompt Engineering Basics <a
-              href="/certificates/coursera-prompt-eng-basic.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><Icon icon="link" /></a
-            >
-          </li>
-          <li>
-            Generative AI: Elevate your Software Development Career <a
-              href="/certificates/coursera-elevate-software-dev.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><Icon icon="link" /></a
-            >
-          </li>
-        </ul>
-      </li>
+        ))
+      }
     </ul>
   </div>
 </section>
