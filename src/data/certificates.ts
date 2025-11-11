@@ -15,7 +15,7 @@ export const certificates: ICertificateItem[] = [
   },
   {
     name: "IBM Generative AI for Software Developers career certificate",
-    link: "/certificates/course-era-gen-ai.pdf",
+    link: "/certificates/coursera-gen-ai.pdf",
     children: [
       {
         name: "Generative AI: Introduction and Applications",
@@ -50,6 +50,10 @@ export const certificates: ICertificateItem[] = [
       {
         name: "Database Integration and Management with .NET",
         link: "/certificates/net-db-integration-management.pdf",
+      },
+      {
+        name: "Security and Authentication with .NET",
+        link: "/certificates/net-security-authentication.pdf",
       },
     ],
   },
