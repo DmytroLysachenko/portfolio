@@ -10,6 +10,10 @@ export const certificates: ICertificateItem[] = [
     link: "https://cert.efset.org/hMHpjX",
   },
   {
+    name: "Państwowy Certyfikat znajomości języka polskiego (B2)",
+    link: "/certificates/polski-b2.pdf",
+  },
+  {
     name: "Bootcamp Fullstack Developer course completion certificate",
     link: "/certificates/dmytro_lysachenko_fullstack_cert.pdf",
   },
@@ -54,6 +58,10 @@ export const certificates: ICertificateItem[] = [
       {
         name: "Security and Authentication with .NET",
         link: "/certificates/net-security-authentication.pdf",
+      },
+      {
+        name: "Performance Optimization and Scalability with .NET",
+        link: "/certificates/net-performance-optimization.pdf",
       },
     ],
   },
