@@ -86,8 +86,9 @@ const { title, description } = Astro.props;
     <style>
       :root {
         --_placeholder-bg: linear-gradient(transparent, transparent);
+        --bg-noise: none;
         --bg-image-main: url("/assets/backgrounds/bg-main-light-800w.webp");
-        --bg-image-main-curves: url("/assets/backgrounds/bg-main-light.svg");
+        --bg-image-main-curves: var(--_placeholder-bg);
         --bg-image-subtle-1: var(--_placeholder-bg);
         --bg-image-subtle-2: var(--_placeholder-bg);
         --bg-image-footer: var(--_placeholder-bg);
@@ -101,7 +102,6 @@ const { title, description } = Astro.props;
 
       :root.theme-dark {
         --bg-image-main: url("/assets/backgrounds/bg-main-dark-800w.webp");
-        --bg-image-main-curves: url("/assets/backgrounds/bg-main-dark.svg");
         --bg-svg-blend-mode: darken;
         --bg-blend-mode: lighten;
       }
@@ -109,11 +109,14 @@ const { title, description } = Astro.props;
       /* These backgrounds are displayed below the fold, so we lazy load them
 			   once the `.loaded` class has been set.  */
       :root.loaded {
+        --bg-noise: url("/assets/backgrounds/noise.webp");
+        --bg-image-main-curves: url("/assets/backgrounds/bg-main-light.svg");
         --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-light-800w.webp");
         --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-light-800w.webp");
         --bg-image-footer: url("/assets/backgrounds/bg-footer-light-800w.webp");
       }
       :root.loaded.theme-dark {
+        --bg-image-main-curves: url("/assets/backgrounds/bg-main-dark.svg");
         --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-dark-800w.webp");
         --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-dark-800w.webp");
         --bg-image-footer: url("/assets/backgrounds/bg-footer-dark-800w.webp");
@@ -129,11 +132,14 @@ const { title, description } = Astro.props;
         }
 
         :root.loaded {
+          --bg-noise: url("/assets/backgrounds/noise.webp");
+          --bg-image-main-curves: url("/assets/backgrounds/bg-main-light.svg");
           --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-light-1440w.webp");
           --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-light-1440w.webp");
           --bg-image-footer: url("/assets/backgrounds/bg-footer-light-1440w.webp");
         }
         :root.loaded.theme-dark {
+          --bg-image-main-curves: url("/assets/backgrounds/bg-main-dark.svg");
           --bg-image-subtle-1: url("/assets/backgrounds/bg-subtle-1-dark-1440w.webp");
           --bg-image-subtle-2: url("/assets/backgrounds/bg-subtle-2-dark-1440w.webp");
           --bg-image-footer: url("/assets/backgrounds/bg-footer-dark-1440w.webp");
@@ -146,7 +152,7 @@ const { title, description } = Astro.props;
         contain: paint;
         background:
 					/*noise*/
-          url("/assets/backgrounds/noise.webp") top center/220px repeat,
+          var(--bg-noise) top center/220px repeat,
           /*footer*/ var(--bg-image-footer) bottom
             center/var(--bg-gradient-size) no-repeat,
           /*header1*/ var(--bg-image-main-curves) top
