@@ -1,7 +1,7 @@
 ---
 title: LibraryView
 publishDate: 2025-02-15 00:00:00
-img: /assets/library-view.webp
+img: library-view.webp
 img_alt: A responsive web app interface displaying a library catalog with search and filtering options.
 description: |
   LibraryView is a full-featured web-based library management system designed for efficient book borrowing and management. The platform offers a robust admin panel and is built entirely in a serverless environment, focusing on performance and scalability.

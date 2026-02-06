@@ -129,8 +129,64 @@ const imageURL = new URL(image, Astro.site);
   crossorigin
 />
 <link
+  rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+  as="style"
+/>
+<link
   href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
   rel="stylesheet"
+  media="print"
+  onload="this.media='all'"
+/>
+<noscript>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+</noscript>
+
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/noise.webp"
+  fetchpriority="high"
+/>
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/bg-main-light-800w.webp"
+  media="(max-width: 49.999em) and (prefers-color-scheme: light)"
+/>
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/bg-main-dark-800w.webp"
+  media="(max-width: 49.999em) and (prefers-color-scheme: dark)"
+/>
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/bg-main-light-1440w.webp"
+  media="(min-width: 50em) and (prefers-color-scheme: light)"
+/>
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/bg-main-dark-1440w.webp"
+  media="(min-width: 50em) and (prefers-color-scheme: dark)"
+/>
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/bg-main-light.svg"
+  media="(min-width: 50em) and (prefers-color-scheme: light)"
+/>
+<link
+  rel="preload"
+  as="image"
+  href="/assets/backgrounds/bg-main-dark.svg"
+  media="(min-width: 50em) and (prefers-color-scheme: dark)"
 />
 
 <script is:inline>

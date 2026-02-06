@@ -1,5 +1,7 @@
 ---
+import { GTM_ID } from "astro:env/client";
 
+const hasGtm = Boolean(GTM_ID);
 ---
 
 <section
@@ -33,7 +35,7 @@
   </div>
 </section>
 
-<script>
+<script is:inline define:vars={{ GTM_ID, hasGtm }}>
   // Reuse the gtag shim set in <head>; ensure it exists
   window.dataLayer = window.dataLayer || [];
   window.gtag =
@@ -41,6 +43,16 @@
     function () {
       dataLayer.push(arguments);
     };
+
+  function loadGtm() {
+    if (!hasGtm || window.__gtmLoaded) return;
+    window.__gtmLoaded = true;
+    window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_ID;
+    document.head.appendChild(script);
+  }
 
   function updateConsent(consent) {
     gtag("consent", "update", consent);
@@ -56,6 +68,7 @@
       ad_user_data: "granted",
       ad_personalization: "granted",
     });
+    loadGtm();
   } else if (storedConsent === "false") {
     updateConsent({
       analytics_storage: "denied",
@@ -83,6 +96,7 @@
         ad_user_data: "granted",
         ad_personalization: "granted",
       });
+      loadGtm();
     });
 
   if (btnDecline)

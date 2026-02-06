@@ -1,7 +1,7 @@
 ---
 title: Aora
 publishDate: 2025-01-01 00:00:00
-img: /assets/aora-preview.webp
+img: aora-preview.webp
 img_alt: A mobile app interface displaying AI-generated video content.
 description: |
   Aora is a cross-platform mobile application designed for sharing AI-generated videos. Developed as a personal project, it serves as a learning experience in modern mobile development with React Native and Expo while exploring scalable app architecture.

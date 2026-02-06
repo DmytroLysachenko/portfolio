@@ -1,7 +1,7 @@
 ---
 title: LiveEditor
 publishDate: 2025-02-01 00:00:00
-img: /assets/live-editor.webp
+img: live-editor.webp
 img_alt: A screenshot of a collaborative document editing interface with real-time updates and presence indicators.
 description: |
   LiveEditor is a real-time collaborative document editor designed for seamless creation, sharing, and collaboration. The platform enables users to edit documents simultaneously, with support for comments, versioning, and notifications.

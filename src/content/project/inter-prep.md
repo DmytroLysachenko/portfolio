@@ -1,7 +1,7 @@
 ---
 title: InterPrep
 publishDate: 2025-03-30 00:00:00
-img: /assets/inter-prep.webp
+img: inter-prep.webp
 img_alt: AI-powered interview preparation platform interface.
 description: |
   InterPrep is an AI-driven interview preparation platform that simulates real interview scenarios using advanced AI models. It features real-time voice interaction, question generation, and personalized feedback to help users refine their skills.
