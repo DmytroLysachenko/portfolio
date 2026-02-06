@@ -36,6 +36,37 @@ const { title, description } = Astro.props;
   </head>
 
   <body>
+    <picture
+      class="bg-main"
+      aria-hidden="true"
+    >
+      <source
+        media="(min-width: 50em) and (prefers-color-scheme: dark)"
+        srcset="/assets/backgrounds/bg-main-dark-1440w.webp"
+      />
+      <source
+        media="(min-width: 50em) and (prefers-color-scheme: light)"
+        srcset="/assets/backgrounds/bg-main-light-1440w.webp"
+      />
+      <source
+        media="(max-width: 49.999em) and (prefers-color-scheme: dark)"
+        srcset="/assets/backgrounds/bg-main-dark-800w.webp"
+      />
+      <source
+        media="(max-width: 49.999em) and (prefers-color-scheme: light)"
+        srcset="/assets/backgrounds/bg-main-light-800w.webp"
+      />
+      <img
+        src="/assets/backgrounds/bg-main-light-800w.webp"
+        alt=""
+        width="1440"
+        height="640"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </picture>
+
     <div class="stack backgrounds">
       <Nav />
 
@@ -119,15 +150,23 @@ const { title, description } = Astro.props;
             center/var(--bg-gradient-size) no-repeat,
           /*header1*/ var(--bg-image-main-curves) top
             center/var(--bg-gradient-size) no-repeat,
-          /*header2*/ var(--bg-image-main) top center/var(--bg-gradient-size)
-            no-repeat,
           /*base*/ var(--gray-999);
         background-blend-mode: /*noise*/
           overlay,
           /*footer*/ var(--bg-blend-mode),
           /*header1*/ var(--bg-svg-blend-mode),
-          /*header2*/ normal,
           /*base*/ normal;
+      }
+      .bg-main {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+      }
+      .bg-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
       @media (forced-colors: active) {
         /* Deactivate custom backgrounds for high contrast users. */
