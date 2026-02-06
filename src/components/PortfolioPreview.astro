@@ -4,9 +4,11 @@ import type { CollectionEntry } from "astro:content";
 
 interface Props {
   project: CollectionEntry<"project">;
+  priority?: boolean;
 }
 
-const { data, id } = Astro.props.project;
+const { project, priority = false } = Astro.props;
+const { data, id } = project;
 const projectImages = import.meta.glob("../assets/projects/*.webp", {
   eager: true,
   import: "default",
@@ -25,9 +27,9 @@ const projectImage = projectImages[`../assets/projects/${data.img}`];
       alt={data.img_alt || ""}
       widths={[320, 480, 640]}
       sizes="(min-width: 50em) 40vw, 100vw"
-      loading="lazy"
-      decoding="async"
-      fetchpriority="low"
+      loading={priority ? "eager" : "lazy"}
+      decoding={priority ? "sync" : "async"}
+      fetchpriority={priority ? "high" : "low"}
     />
   ) : (
     <span class="image-fallback">Image unavailable</span>

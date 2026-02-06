@@ -63,13 +63,14 @@ const projects = (await getCollection("project"))
 
         <div class="gallery">
           <Grid variant="offset">
-            {
-              projects.map((project) => (
-                <li>
-                  <PortfolioPreview project={project} />
-                </li>
-              ))
-            }
+            {projects.map((project, index) => (
+              <li>
+                <PortfolioPreview
+                  project={project}
+                  priority={index === 0}
+                />
+              </li>
+            ))}
           </Grid>
         </div>
 

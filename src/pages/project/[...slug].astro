@@ -65,8 +65,9 @@ const projectImage = projectImages[`../../assets/projects/${entry.data.img}`];
               alt={entry.data.img_alt || ""}
               widths={[640, 960, 1280]}
               sizes="(min-width: 50em) 70ch, 100vw"
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              decoding="sync"
+              fetchpriority="high"
             />
           ) : (
             <p>Image unavailable.</p>
