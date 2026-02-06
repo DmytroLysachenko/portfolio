@@ -157,24 +157,28 @@ const imageURL = new URL(image, Astro.site);
   as="image"
   href="/assets/backgrounds/bg-main-light-800w.webp"
   media="(max-width: 49.999em) and (prefers-color-scheme: light)"
+  fetchpriority="high"
 />
 <link
   rel="preload"
   as="image"
   href="/assets/backgrounds/bg-main-dark-800w.webp"
   media="(max-width: 49.999em) and (prefers-color-scheme: dark)"
+  fetchpriority="high"
 />
 <link
   rel="preload"
   as="image"
   href="/assets/backgrounds/bg-main-light-1440w.webp"
   media="(min-width: 50em) and (prefers-color-scheme: light)"
+  fetchpriority="high"
 />
 <link
   rel="preload"
   as="image"
   href="/assets/backgrounds/bg-main-dark-1440w.webp"
   media="(min-width: 50em) and (prefers-color-scheme: dark)"
+  fetchpriority="high"
 />
 <link
   rel="preload"
