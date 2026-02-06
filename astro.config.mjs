@@ -11,6 +11,9 @@ const site = process.env.BASE_URL;
 export default defineConfig({
   site,
   trailingSlash: "ignore",
+  build: {
+    inlineStylesheets: "always",
+  },
   env: {
     schema: {
       GTM_ID: envField.string({ context: "client", access: "public" }),
