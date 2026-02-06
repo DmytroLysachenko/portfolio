@@ -301,6 +301,10 @@ const isCurrentPage = (href: string) => {
   .social:focus {
     color: var(--accent-text-over);
   }
+  :global(:root:not(.theme-dark)) .social:hover,
+  :global(:root:not(.theme-dark)) .social:focus {
+    color: var(--accent-regular);
+  }
 
   .theme-toggle {
     display: flex;
