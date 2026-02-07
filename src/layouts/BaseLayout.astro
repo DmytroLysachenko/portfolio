@@ -3,6 +3,7 @@ import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+import GtagConsentHead from "../components/GtagConsentHead.astro";
 
 interface Props {
   title?: string | undefined;
@@ -15,20 +16,7 @@ const { title, description, jsonLd } = Astro.props;
 
 <html lang="en">
   <head>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-
-      // Consent defaults (run BEFORE gtm.js)
-      gtag("consent", "default", {
-        ad_storage: "denied",
-        analytics_storage: "denied",
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-      });
-    </script>
+    <GtagConsentHead />
 
     <MainHead
       title={title}
