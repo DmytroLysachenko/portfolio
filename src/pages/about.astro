@@ -8,11 +8,43 @@ import WorkExperience from "../components/about/WorkExperience.astro";
 import Education from "../components/about/Education.astro";
 import SkillsList from "../components/about/SkillsList.astro";
 import Certificates from "../components/about/Certificates.astro";
+
+const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
+const person = {
+  "@type": "Person",
+  name: "Dmytro Lysachenko",
+  jobTitle: "Full-Stack Developer",
+  url: siteUrl.href,
+  image: new URL("seo-preview.webp", siteUrl).href,
+  sameAs: [
+    "https://www.linkedin.com/in/dmytro-lysachenko",
+    "https://github.com/DmytroLysachenko",
+  ],
+};
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Dmytro Lysachenko",
+    url: new URL("/about/", siteUrl).href,
+    isPartOf: {
+      "@type": "WebSite",
+      url: siteUrl.href,
+    },
+    about: person,
+  },
+  {
+    "@context": "https://schema.org",
+    ...person,
+  },
+];
 ---
 
 <BaseLayout
   title="Dmytro Lysachenko | About"
   description="Page where you can find out more about my professional background and journey into software development."
+  jsonLd={jsonLd}
 >
   <div class="stack gap-20">
     <main class="wrapper about">

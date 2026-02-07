@@ -29,11 +29,42 @@ const projectImages = import.meta.glob("../../assets/projects/*.webp", {
   import: "default",
 });
 const projectImage = projectImages[`../../assets/projects/${entry.data.img}`];
+const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
+const person = {
+  "@type": "Person",
+  name: "Dmytro Lysachenko",
+  jobTitle: "Full-Stack Developer",
+  url: siteUrl.href,
+  sameAs: [
+    "https://www.linkedin.com/in/dmytro-lysachenko",
+    "https://github.com/DmytroLysachenko",
+  ],
+};
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: entry.data.title,
+    description: entry.data.description,
+    url: new URL(`/project/${entry.id}/`, siteUrl).href,
+    keywords: entry.data.tags.join(", "),
+    author: person,
+    isPartOf: {
+      "@type": "WebSite",
+      url: siteUrl.href,
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    ...person,
+  },
+];
 ---
 
 <BaseLayout
   title={entry.data.title}
   description={entry.data.description}
+  jsonLd={jsonLd}
 >
   <div class="stack gap-20">
     <div class="stack gap-15">

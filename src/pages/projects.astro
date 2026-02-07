@@ -11,11 +11,43 @@ import Grid from "../components/Grid.astro";
 const projects = (await getCollection("project")).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
+
+const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
+const listItems = projects.map((project, index) => ({
+  "@type": "ListItem",
+  position: index + 1,
+  url: new URL(`/project/${project.id}/`, siteUrl).href,
+  name: project.data.title,
+}));
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Projects",
+    url: new URL("/projects/", siteUrl).href,
+    isPartOf: {
+      "@type": "WebSite",
+      url: siteUrl.href,
+    },
+    hasPart: listItems.map((item) => ({
+      "@type": "CreativeWork",
+      name: item.name,
+      url: item.url,
+    })),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: listItems,
+  },
+];
 ---
 
 <BaseLayout
   title="Dmytro Lysachenko | Projects"
   description="Explore my full-stack web & mobile development projects built with React, Next.js, React Native, Node.js, and more. Showcasing modern, high-performance applications."
+  jsonLd={jsonLd}
 >
   <div class="stack gap-20">
     <main class="wrapper stack gap-8">

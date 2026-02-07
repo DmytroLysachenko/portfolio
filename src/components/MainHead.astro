@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
   title = "Dmytro Lysachenko | Full-Stack Web & Mobile Developer",
   description = "Full-stack web & mobile developer specializing in TypeScript, React, Next.js, Astro, React Native, Node.js, and Express.js. Based in Bydgoszcz, open to opportunities across Poland and EU. Let's build something amazing together!",
   image = "seo-preview.webp",
+  jsonLd,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -119,6 +121,15 @@ const imageURL = new URL(image, Astro.site);
   type="image/svg+xml"
   href="/favicon.svg"
 />
+
+{
+  jsonLd && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+    />
+  )
+}
 <link
   rel="preconnect"
   href="https://fonts.googleapis.com"

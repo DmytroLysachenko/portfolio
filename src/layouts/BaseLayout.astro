@@ -7,9 +7,10 @@ import CookieConsent from "../components/CookieConsent.astro";
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const { title, description } = Astro.props;
+const { title, description, jsonLd } = Astro.props;
 ---
 
 <html lang="en">
@@ -32,6 +33,7 @@ const { title, description } = Astro.props;
     <MainHead
       title={title}
       description={description}
+      jsonLd={jsonLd}
     />
   </head>
 
