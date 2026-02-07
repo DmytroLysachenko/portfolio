@@ -17,12 +17,39 @@ import Skills from "../components/Skills.astro";
 import technologies from "../data/technologies";
 
 const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
+const bio =
+  "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
 const person = {
   "@type": "Person",
   name: "Dmytro Lysachenko",
   jobTitle: "Full-Stack Developer",
+  description: bio,
   url: siteUrl.href,
   image: new URL("seo-preview.webp", siteUrl).href,
+  email: "mailto:dlysachenko98@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bydgoszcz",
+    addressCountry: "PL",
+  },
+  knowsLanguage: ["English", "Polish", "Ukrainian", "Russian"],
+  knowsAbout: [
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "React Native",
+    "Node.js",
+    "Next.js",
+    "NestJS",
+    "No-code and low-code platforms",
+    "C#",
+    ".NET",
+  ],
+  hasOccupation: [
+    { "@type": "Occupation", name: "Web Developer" },
+    { "@type": "Occupation", name: "Frontend Engineer" },
+    { "@type": "Occupation", name: "Full-Stack Engineer" },
+  ],
   sameAs: [
     "https://www.linkedin.com/in/dmytro-lysachenko",
     "https://github.com/DmytroLysachenko",
@@ -42,13 +69,35 @@ const jsonLd = [
     "@type": "WebPage",
     name: "Home",
     url: siteUrl.href,
-    description:
-      "Portfolio of Dmytro Lysachenko, a full-stack developer specializing in TypeScript, React, Next.js, Astro, Node.js, and Express.",
+    description: bio,
     isPartOf: {
       "@type": "WebSite",
       url: siteUrl.href,
     },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: new URL("seo-preview.webp", siteUrl).href,
+    },
     about: person,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Dmytro Lysachenko",
+    url: siteUrl.href,
+    founder: person,
+    areaServed: ["Poland", "Europe", "Worldwide"],
+    serviceType: [
+      "Web Development",
+      "Frontend Development",
+      "Full-Stack Development",
+      "Mobile App Development",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "business inquiries",
+      email: "mailto:dlysachenko98@gmail.com",
+    },
   },
   {
     "@context": "https://schema.org",

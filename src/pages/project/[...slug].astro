@@ -30,11 +30,38 @@ const projectImages = import.meta.glob("../../assets/projects/*.webp", {
 });
 const projectImage = projectImages[`../../assets/projects/${entry.data.img}`];
 const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
+const bio =
+  "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
 const person = {
   "@type": "Person",
   name: "Dmytro Lysachenko",
   jobTitle: "Full-Stack Developer",
+  description: bio,
   url: siteUrl.href,
+  email: "mailto:dlysachenko98@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bydgoszcz",
+    addressCountry: "PL",
+  },
+  knowsLanguage: ["English", "Polish", "Ukrainian", "Russian"],
+  knowsAbout: [
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "React Native",
+    "Node.js",
+    "Next.js",
+    "NestJS",
+    "No-code and low-code platforms",
+    "C#",
+    ".NET",
+  ],
+  hasOccupation: [
+    { "@type": "Occupation", name: "Web Developer" },
+    { "@type": "Occupation", name: "Frontend Engineer" },
+    { "@type": "Occupation", name: "Full-Stack Engineer" },
+  ],
   sameAs: [
     "https://www.linkedin.com/in/dmytro-lysachenko",
     "https://github.com/DmytroLysachenko",
@@ -43,16 +70,43 @@ const person = {
 const jsonLd = [
   {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
+    "@type": "SoftwareApplication",
     name: entry.data.title,
     description: entry.data.description,
     url: new URL(`/project/${entry.id}/`, siteUrl).href,
+    applicationCategory: "WebApplication",
+    operatingSystem: "Web",
     keywords: entry.data.tags.join(", "),
     author: person,
+    datePublished: entry.data.publishDate.toISOString(),
     isPartOf: {
       "@type": "WebSite",
       url: siteUrl.href,
     },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl.href,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: new URL("/projects/", siteUrl).href,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: entry.data.title,
+        item: new URL(`/project/${entry.id}/`, siteUrl).href,
+      },
+    ],
   },
   {
     "@context": "https://schema.org",
