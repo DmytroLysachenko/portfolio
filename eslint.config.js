@@ -64,6 +64,9 @@ export default [
         process: "readonly",
       },
     },
+    rules: {
+      "import/no-unresolved": "off",
+    },
   },
   ...tsStrictTypeChecked(tsPlugin, tsParser).map(withTsFiles),
   ...tsStylisticTypeChecked(tsPlugin, tsParser).map(withTsFiles),

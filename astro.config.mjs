@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
 import dotenv from "dotenv";
+import sitemap from "@astrojs/sitemap";
 
 dotenv.config();
 
@@ -24,5 +25,5 @@ export default defineConfig({
       GTM_ID: envField.string({ context: "client", access: "public" }),
     },
   },
-  integrations: [],
+  integrations: [sitemap()],
 });
