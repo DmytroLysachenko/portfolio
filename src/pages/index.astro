@@ -16,6 +16,11 @@ import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
 import technologies from "../data/technologies";
 
+const iconImages = import.meta.glob("../assets/icons/**/*.webp", {
+  eager: true,
+  import: "default",
+});
+
 const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
 const bio =
   "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
@@ -189,11 +194,11 @@ const projects = (await getCollection("project"))
                   {category.items.map((tech) => (
                     <li class="tech-card">
                       <div class={tech.background ? "background" : ""}>
-                        <img
-                          src={tech.icon}
+                        <Image
+                          src={iconImages[`../assets/icons/${tech.icon}`]}
                           alt={tech.name}
-                          width={40}
-                          height={40}
+                          widths={[32, 40, 64]}
+                          sizes="40px"
                           class="tech-icon"
                           loading="lazy"
                         />
