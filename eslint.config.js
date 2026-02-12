@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import importPlugin from "eslint-plugin-import";
 import astroPlugin from "eslint-plugin-astro";
 import tsParser from "@typescript-eslint/parser";
+import unusedImports from "eslint-plugin-unused-imports";
 import { createRequire } from "module";
 import { fileURLToPath } from "url";
 import path from "path";
@@ -40,12 +41,14 @@ export default [
       "eslint.config.js",
       "**/*.astro/*.ts",
       "**/*.astro/*.tsx",
+      "src/content/**",
     ],
   },
   js.configs.recommended,
   {
     plugins: {
       import: importPlugin,
+      "unused-imports": unusedImports,
     },
     rules: {
       "import/no-unresolved": [
@@ -55,6 +58,28 @@ export default [
         },
       ],
       "import/no-cycle": "error",
+      "import/order": [
+        "error",
+        {
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+            "object",
+            "type",
+          ],
+          "newlines-between": "always",
+          alphabetize: { order: "asc", caseInsensitive: true },
+        },
+      ],
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+      ],
     },
   },
   {
@@ -66,6 +91,15 @@ export default [
     },
     rules: {
       "import/no-unresolved": "off",
+    },
+  },
+  {
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      globals: {
+        process: "readonly",
+        console: "readonly",
+      },
     },
   },
   ...tsStrictTypeChecked(tsPlugin, tsParser).map(withTsFiles),
@@ -82,8 +116,7 @@ export default [
         { checksVoidReturn: false },
       ],
       "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+        "off",
       ],
     },
   },

@@ -1,7 +1,7 @@
 // @ts-check
+import sitemap from "@astrojs/sitemap";
 import { defineConfig, envField } from "astro/config";
 import dotenv from "dotenv";
-import sitemap from "@astrojs/sitemap";
 
 dotenv.config();
 

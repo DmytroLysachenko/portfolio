@@ -9,6 +9,8 @@
     "astro": "astro",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "check": "astro check && npm run lint && npm run build",
+    "images:compress": "node scripts/compress-images.mjs",
     "prepare": "husky"
   },
   "dependencies": {
@@ -20,11 +22,14 @@
     "@eslint/js": "^9.39.2",
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.54.0",
+    "@astrojs/check": "^0.9.6",
     "astro-eslint-parser": "^1.2.2",
     "eslint": "^9.39.2",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-astro": "^1.5.0",
     "eslint-plugin-import": "^2.32.0",
-    "husky": "^9.1.7"
+    "eslint-plugin-unused-imports": "^4.2.0",
+    "husky": "^9.1.7",
+    "typescript": "^5.7.3"
   }
 }
