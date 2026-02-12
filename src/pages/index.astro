@@ -1,121 +1,80 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import { getCollection } from "astro:content";
 
-import BaseLayout from "../layouts/BaseLayout.astro";
-
+import portrait from "../assets/portrait.webp";
 import CallToAction from "../components/CallToAction.astro";
+import ContactCTA from "../components/ContactCTA.astro";
 import Grid from "../components/Grid.astro";
 import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
 import PortfolioPreview from "../components/PortfolioPreview.astro";
-import portrait from "../assets/portrait.webp";
-
-import ContactCTA from "../components/ContactCTA.astro";
 import Skills from "../components/Skills.astro";
 import technologies from "../data/technologies";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  basePerson,
+  bio,
+  professionalService,
+  webPage,
+  website,
+} from "../lib/seo";
 
-const iconImages = import.meta.glob("../assets/icons/**/*.webp", {
-  eager: true,
-  import: "default",
-});
+import type { ImageMetadata } from "astro";
+
+const iconImages = import.meta.glob<ImageMetadata>(
+  "../assets/icons/**/*.webp",
+  {
+    eager: true,
+    import: "default",
+  },
+);
 
 const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
-const bio =
-  "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
-const person = {
-  "@type": "Person",
-  name: "Dmytro Lysachenko",
-  jobTitle: "Full-Stack Developer",
-  description: bio,
-  url: siteUrl.href,
-  image: new URL("seo-preview.webp", siteUrl).href,
-  email: "mailto:dlysachenko98@gmail.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bydgoszcz",
-    addressCountry: "PL",
-  },
-  knowsLanguage: ["English", "Polish", "Ukrainian", "Russian"],
-  knowsAbout: [
-    "TypeScript",
-    "JavaScript",
-    "React",
-    "React Native",
-    "Node.js",
-    "Next.js",
-    "NestJS",
-    "No-code and low-code platforms",
-    "C#",
-    ".NET",
-  ],
-  hasOccupation: [
-    { "@type": "Occupation", name: "Web Developer" },
-    { "@type": "Occupation", name: "Frontend Engineer" },
-    { "@type": "Occupation", name: "Full-Stack Engineer" },
-  ],
-  sameAs: [
-    "https://www.linkedin.com/in/dmytro-lysachenko",
-    "https://github.com/DmytroLysachenko",
-  ],
-};
+const person = basePerson(siteUrl);
+const seoPreview = new URL("seo-preview.webp", siteUrl).href;
 
 const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Dmytro Lysachenko | Portfolio",
-    url: siteUrl.href,
-    inLanguage: "en",
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
+  website(siteUrl),
+  webPage({
     name: "Home",
     url: siteUrl.href,
     description: bio,
-    isPartOf: {
-      "@type": "WebSite",
-      url: siteUrl.href,
-    },
-    primaryImageOfPage: {
-      "@type": "ImageObject",
-      url: new URL("seo-preview.webp", siteUrl).href,
-    },
+    siteUrl,
+    image: seoPreview,
     about: person,
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Dmytro Lysachenko",
-    url: siteUrl.href,
-    founder: person,
-    areaServed: ["Poland", "Europe", "Worldwide"],
-    serviceType: [
-      "Web Development",
-      "Frontend Development",
-      "Full-Stack Development",
-      "Mobile App Development",
-    ],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "business inquiries",
-      email: "mailto:dlysachenko98@gmail.com",
-    },
-  },
+  }),
+  professionalService(siteUrl, person),
   {
     "@context": "https://schema.org",
     ...person,
   },
 ];
 
+const portraitPreload = await getImage({
+  src: portrait,
+  width: 640,
+  format: "webp",
+});
+
 const projects = (await getCollection("project"))
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 4);
 ---
 
-<BaseLayout jsonLd={jsonLd}>
+<BaseLayout
+  jsonLd={jsonLd}
+  image={seoPreview}
+>
+  <Fragment slot="head">
+    <link
+      rel="preload"
+      as="image"
+      href={portraitPreload.src}
+      fetchpriority="high"
+    />
+  </Fragment>
   <div class="stack gap-20 lg:gap-48">
     <div class="wrapper stack gap-8 lg:gap-20">
       <header class="hero">

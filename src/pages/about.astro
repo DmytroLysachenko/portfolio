@@ -1,88 +1,32 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-
-import ContactCTA from "../components/ContactCTA.astro";
-import Hero from "../components/Hero.astro";
 import Background from "../components/about/Background.astro";
-import WorkExperience from "../components/about/WorkExperience.astro";
+import Certificates from "../components/about/Certificates.astro";
 import Education from "../components/about/Education.astro";
 import SkillsList from "../components/about/SkillsList.astro";
-import Certificates from "../components/about/Certificates.astro";
+import WorkExperience from "../components/about/WorkExperience.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import Hero from "../components/Hero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { basePerson, breadcrumbs, bio, webPage } from "../lib/seo";
 
 const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
-const bio =
-  "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
-const person = {
-  "@type": "Person",
-  name: "Dmytro Lysachenko",
-  jobTitle: "Full-Stack Developer",
-  description: bio,
-  url: siteUrl.href,
-  image: new URL("seo-preview.webp", siteUrl).href,
-  email: "mailto:dlysachenko98@gmail.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bydgoszcz",
-    addressCountry: "PL",
-  },
-  knowsLanguage: ["English", "Polish", "Ukrainian", "Russian"],
-  knowsAbout: [
-    "TypeScript",
-    "JavaScript",
-    "React",
-    "React Native",
-    "Node.js",
-    "Next.js",
-    "NestJS",
-    "No-code and low-code platforms",
-    "C#",
-    ".NET",
-  ],
-  hasOccupation: [
-    { "@type": "Occupation", name: "Web Developer" },
-    { "@type": "Occupation", name: "Frontend Engineer" },
-    { "@type": "Occupation", name: "Full-Stack Engineer" },
-  ],
-  sameAs: [
-    "https://www.linkedin.com/in/dmytro-lysachenko",
-    "https://github.com/DmytroLysachenko",
-  ],
-};
+const person = basePerson(siteUrl);
+const seoPreview = new URL("seo-preview.webp", siteUrl).href;
 
 const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
+  webPage({
+    type: "AboutPage",
     name: "About Dmytro Lysachenko",
     url: new URL("/about/", siteUrl).href,
-    isPartOf: {
-      "@type": "WebSite",
-      url: siteUrl.href,
-    },
-    primaryImageOfPage: {
-      "@type": "ImageObject",
-      url: new URL("seo-preview.webp", siteUrl).href,
-    },
+    description: bio,
+    siteUrl,
+    image: seoPreview,
     about: person,
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteUrl.href,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "About",
-        item: new URL("/about/", siteUrl).href,
-      },
-    ],
-  },
+  }),
+  breadcrumbs([
+    { name: "Home", url: siteUrl.href },
+    { name: "About", url: new URL("/about/", siteUrl).href },
+  ]),
   {
     "@context": "https://schema.org",
     ...person,
@@ -93,6 +37,7 @@ const jsonLd = [
 <BaseLayout
   title="Dmytro Lysachenko | About"
   description="Page where you can find out more about my professional background and journey into software development."
+  image={seoPreview}
   jsonLd={jsonLd}
 >
   <div class="stack gap-20">

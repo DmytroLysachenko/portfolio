@@ -1,14 +1,20 @@
 ---
-import { Image } from "astro:assets";
-import { type CollectionEntry, getCollection } from "astro:content";
-
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Image, getImage } from "astro:assets";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 
 import ContactCTA from "../../components/ContactCTA.astro";
 import Hero from "../../components/Hero.astro";
 import Icon from "../../components/Icon.astro";
 import Pill from "../../components/Pill.astro";
-import { render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import {
+  basePerson,
+  breadcrumbs,
+  softwareApplication,
+  webPage,
+} from "../../lib/seo";
+
+import type { ImageMetadata } from "astro";
 
 interface Props {
   entry: CollectionEntry<"project">;
@@ -24,100 +30,69 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
-const projectImages = import.meta.glob("../../assets/projects/*.webp", {
-  eager: true,
-  import: "default",
-});
+const projectImages = import.meta.glob<ImageMetadata>(
+  "../../assets/projects/*.webp",
+  {
+    eager: true,
+    import: "default",
+  },
+);
 const projectImage = projectImages[`../../assets/projects/${entry.data.img}`];
 const siteUrl = Astro.site ?? new URL("https://www.dlysachenkodev.icu");
-const bio =
-  "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
-const person = {
-  "@type": "Person",
-  name: "Dmytro Lysachenko",
-  jobTitle: "Full-Stack Developer",
-  description: bio,
-  url: siteUrl.href,
-  email: "mailto:dlysachenko98@gmail.com",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Bydgoszcz",
-    addressCountry: "PL",
-  },
-  knowsLanguage: ["English", "Polish", "Ukrainian", "Russian"],
-  knowsAbout: [
-    "TypeScript",
-    "JavaScript",
-    "React",
-    "React Native",
-    "Node.js",
-    "Next.js",
-    "NestJS",
-    "No-code and low-code platforms",
-    "C#",
-    ".NET",
-  ],
-  hasOccupation: [
-    { "@type": "Occupation", name: "Web Developer" },
-    { "@type": "Occupation", name: "Frontend Engineer" },
-    { "@type": "Occupation", name: "Full-Stack Engineer" },
-  ],
-  sameAs: [
-    "https://www.linkedin.com/in/dmytro-lysachenko",
-    "https://github.com/DmytroLysachenko",
-  ],
-};
+const person = basePerson(siteUrl);
+
+const ogImage = projectImage
+  ? await getImage({
+      src: projectImage,
+      width: 1200,
+      format: "webp",
+    })
+  : null;
+
+const projectUrl = new URL(`/project/${entry.id}/`, siteUrl).href;
+const mainEntity = softwareApplication({
+  entry,
+  siteUrl,
+  person,
+  image: ogImage?.src ? new URL(ogImage.src, siteUrl).href : undefined,
+});
+
 const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+  mainEntity,
+  webPage({
     name: entry.data.title,
+    url: projectUrl,
     description: entry.data.description,
-    url: new URL(`/project/${entry.id}/`, siteUrl).href,
-    applicationCategory: "WebApplication",
-    operatingSystem: "Web",
-    keywords: entry.data.tags.join(", "),
-    author: person,
-    datePublished: entry.data.publishDate.toISOString(),
-    isPartOf: {
-      "@type": "WebSite",
-      url: siteUrl.href,
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteUrl.href,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Projects",
-        item: new URL("/projects/", siteUrl).href,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: entry.data.title,
-        item: new URL(`/project/${entry.id}/`, siteUrl).href,
-      },
-    ],
-  },
+    siteUrl,
+    image: ogImage?.src ? new URL(ogImage.src, siteUrl).href : undefined,
+    mainEntity,
+  }),
+  breadcrumbs([
+    { name: "Home", url: siteUrl.href },
+    { name: "Projects", url: new URL("/projects/", siteUrl).href },
+    { name: entry.data.title, url: projectUrl },
+  ]),
   {
     "@context": "https://schema.org",
     ...person,
   },
 ];
+
+const allProjects = (await getCollection("project")).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+const currentIndex = allProjects.findIndex((project) => project.id === entry.id);
+const newerProject = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
+const olderProject =
+  currentIndex >= 0 && currentIndex < allProjects.length - 1
+    ? allProjects[currentIndex + 1]
+    : null;
 ---
 
 <BaseLayout
-  title={entry.data.title}
+  title={`${entry.data.title} | Dmytro Lysachenko`}
   description={entry.data.description}
+  image={ogImage?.src}
   jsonLd={jsonLd}
 >
   <div class="stack gap-20">
@@ -163,6 +138,31 @@ const jsonLd = [
         </div>
       </main>
     </div>
+    {(newerProject || olderProject) && (
+      <nav class="wrapper related">
+        <h2>Explore More Projects</h2>
+        <div class="related-links">
+          {newerProject && (
+            <a
+              class="related-link"
+              href={`/project/${newerProject.id}`}
+            >
+              <span class="label">Newer project</span>
+              <span class="title">{newerProject.data.title}</span>
+            </a>
+          )}
+          {olderProject && (
+            <a
+              class="related-link"
+              href={`/project/${olderProject.id}`}
+            >
+              <span class="label">Older project</span>
+              <span class="title">{olderProject.data.title}</span>
+            </a>
+          )}
+        </div>
+      </nav>
+    )}
     <ContactCTA />
   </div>
 </BaseLayout>
@@ -257,6 +257,49 @@ const jsonLd = [
     text-decoration-color: currentColor;
   }
 
+  .related {
+    gap: 1.5rem;
+  }
+
+  .related h2 {
+    font-size: var(--text-2xl);
+  }
+
+  .related-links {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .related-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--gray-800);
+    background: var(--gradient-subtle);
+    text-decoration: none;
+    transition: box-shadow var(--theme-transition), transform var(--theme-transition);
+  }
+
+  .related-link:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .related-link .label {
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+  }
+
+  .related-link .title {
+    font-size: var(--text-lg);
+    color: var(--gray-0);
+  }
+
   @media (min-width: 50em) {
     .back-link {
       display: block;
@@ -271,6 +314,10 @@ const jsonLd = [
 
     .content :global(blockquote) {
       font-size: var(--text-3xl);
+    }
+
+    .related-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 </style>

@@ -1,17 +1,18 @@
 ---
+import CookieConsent from "../components/CookieConsent.astro";
+import Footer from "../components/Footer.astro";
+import GtagConsentHead from "../components/GtagConsentHead.astro";
 import MainHead from "../components/MainHead.astro";
 import Nav from "../components/Nav.astro";
-import Footer from "../components/Footer.astro";
-import CookieConsent from "../components/CookieConsent.astro";
-import GtagConsentHead from "../components/GtagConsentHead.astro";
 
 interface Props {
   title?: string | undefined;
   description?: string | undefined;
+  image?: string | undefined;
   jsonLd?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
-const { title, description, jsonLd } = Astro.props;
+const { title, description, image, jsonLd } = Astro.props;
 ---
 
 <html lang="en">
@@ -21,8 +22,10 @@ const { title, description, jsonLd } = Astro.props;
     <MainHead
       title={title}
       description={description}
+      image={image}
       jsonLd={jsonLd}
     />
+    <slot name="head" />
   </head>
 
   <body>
