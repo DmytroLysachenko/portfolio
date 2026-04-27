@@ -15,6 +15,7 @@ const technologies: ICategory[] = [
     items: [
       { name: "TypeScript", icon: "languages/typescript.webp" },
       { name: "JavaScript", icon: "languages/javascript.webp" },
+      { name: "C#", icon: "languages/csharp.svg" },
       { name: "HTML5", icon: "languages/html.webp" },
     ],
   },
@@ -41,6 +42,8 @@ const technologies: ICategory[] = [
         background: true,
       },
       { name: "Astro", icon: "frameworks/astro.webp", background: true },
+      { name: "Xano", icon: "databases/xano.webp" },
+      { name: ".NET", icon: "frameworks/dotnet.svg" },
       { name: "Node.js", icon: "frameworks/node.webp" },
       {
         name: "Express.js",
@@ -66,6 +69,15 @@ const technologies: ICategory[] = [
         background: true,
       },
       { name: "Drizzle ORM", icon: "databases/drizzle.webp" },
+    ],
+  },
+  {
+    category: "AI & Cloud",
+    items: [
+      { name: "GCP", icon: "instruments/gcp.svg" },
+      { name: "OpenAI", icon: "instruments/openai.svg", background: true },
+      { name: "Anthropic", icon: "instruments/claude.svg" },
+      { name: "MCP", icon: "instruments/mcp.svg" },
     ],
   },
   {

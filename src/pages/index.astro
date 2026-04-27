@@ -24,7 +24,7 @@ import {
 import type { ImageMetadata } from "astro";
 
 const iconImages = import.meta.glob<ImageMetadata>(
-  "../assets/icons/**/*.webp",
+  ["../assets/icons/**/*.webp", "../assets/icons/**/*.svg"],
   {
     eager: true,
     import: "default",
