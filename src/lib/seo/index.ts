@@ -17,7 +17,7 @@ interface WebPageOptions {
 }
 
 const bio =
-  "Full-stack developer focused on building clear, modern web experiences. Always learning and eager to deliver durable solutions with strong architecture and thoughtful UX.";
+  "Full-stack developer specializing in modern web architectures and AI-driven automation. Experienced in building scalable applications with React/Next.js and extending system intelligence through Agentic AI, MCP servers, and serverless cloud solutions.";
 
 const basePerson = (siteUrl: URL) => ({
   "@type": "Person",
@@ -37,18 +37,20 @@ const basePerson = (siteUrl: URL) => ({
     "TypeScript",
     "JavaScript",
     "React",
-    "React Native",
     "Node.js",
     "Next.js",
-    "NestJS",
-    "No-code and low-code platforms",
+    "Astro",
+    "GCP (Google Cloud Platform)",
+    "Agentic AI",
+    "Model Context Protocol (MCP)",
+    "Xano",
     "C#",
     ".NET",
   ],
   hasOccupation: [
     { "@type": "Occupation", name: "Web Developer" },
-    { "@type": "Occupation", name: "Frontend Engineer" },
     { "@type": "Occupation", name: "Full-Stack Engineer" },
+    { "@type": "Occupation", name: "AI Automation Developer" },
   ],
   sameAs: [
     "https://www.linkedin.com/in/dmytro-lysachenko",
@@ -76,9 +78,9 @@ const professionalService = (
   areaServed: ["Poland", "Europe", "Worldwide"],
   serviceType: [
     "Web Development",
-    "Frontend Development",
     "Full-Stack Development",
-    "Mobile App Development",
+    "AI Automation & Agentic Solutions",
+    "Cloud Integrations",
   ],
   contactPoint: {
     "@type": "ContactPoint",
