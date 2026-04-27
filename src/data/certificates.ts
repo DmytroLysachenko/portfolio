@@ -37,7 +37,7 @@ export const certificates: ICertificateItem[] = [
   },
   {
     name: "Microsoft Back-End Developer career certificate",
-    link: "/",
+    link: "/certificates/microsoft-backed-dev-cert.pdf",
     children: [
       {
         name: "Foundations of Coding Back-End",
@@ -56,12 +56,20 @@ export const certificates: ICertificateItem[] = [
         link: "/certificates/net-db-integration-management.pdf",
       },
       {
+        name: "Data Structures and Algorithms",
+        link: "/certificates/data-structures-and-algorythms-cert.pdf",
+      },
+      {
         name: "Security and Authentication with .NET",
         link: "/certificates/net-security-authentication.pdf",
       },
       {
         name: "Performance Optimization and Scalability with .NET",
         link: "/certificates/net-performance-optimization.pdf",
+      },
+      {
+        name: "Deployment and DevOps",
+        link: "/certificates/deployment-and-devops-cert.pdf",
       },
     ],
   },
