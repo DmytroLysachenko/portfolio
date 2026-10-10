@@ -15,6 +15,7 @@ const technologies: ICategory[] = [
     items: [
       { name: "TypeScript", icon: "languages/typescript.webp" },
       { name: "JavaScript", icon: "languages/javascript.webp" },
+      { name: "PHP", icon: "languages/php.svg" },
       { name: "C#", icon: "languages/csharp.svg" },
       { name: "HTML5", icon: "languages/html.webp" },
     ],
@@ -36,12 +37,15 @@ const technologies: ICategory[] = [
     category: "Frameworks/Libraries",
     items: [
       { name: "React", icon: "frameworks/react.webp" },
+      { name: "React Native", icon: "frameworks/react.webp" },
+      { name: "Expo", icon: "frameworks/expo.webp" },
       {
         name: "Next.js",
         icon: "frameworks/next.webp",
         background: true,
       },
       { name: "Astro", icon: "frameworks/astro.webp", background: true },
+      { name: "Laravel", icon: "frameworks/laravel.webp" },
       { name: "Xano", icon: "databases/xano.webp" },
       { name: ".NET", icon: "frameworks/dotnet.svg" },
       { name: "Node.js", icon: "frameworks/node.webp" },
@@ -53,6 +57,15 @@ const technologies: ICategory[] = [
     ],
   },
 
+  {
+    category: "WordPress & CMS",
+    items: [
+      { name: "WordPress", icon: "cms/wordpress.svg", background: true },
+      { name: "Sage 11", icon: "cms/sage.svg" },
+      { name: "Acorn", icon: "cms/acorn.svg" },
+      { name: "ACF", icon: "cms/acf.webp" },
+    ],
+  },
   {
     category: "Databases",
     items: [
@@ -95,6 +108,8 @@ const technologies: ICategory[] = [
       { name: "PNPM", icon: "instruments/pnpm.webp" },
       { name: "NPM", icon: "instruments/npm.webp" },
       { name: "VSC", icon: "instruments/vsc.webp" },
+      { name: "PhpStorm", icon: "instruments/phpstorm.svg" },
+      { name: "Docker", icon: "instruments/docker.webp" },
       { name: "Vite", icon: "instruments/vite.webp" },
       { name: "Jira", icon: "instruments/jira.webp" },
       { name: "Trello", icon: "instruments/trello.webp" },
