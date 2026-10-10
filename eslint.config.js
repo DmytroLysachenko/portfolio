@@ -83,6 +83,12 @@ export default [
     },
   },
   {
+    files: ["**/*.js", "**/*.mjs"],
+    rules: {
+      "unused-imports/no-unused-vars": "off",
+    },
+  },
+  {
     files: ["astro.config.mjs", "src/pages/robots.txt.ts"],
     languageOptions: {
       globals: {
