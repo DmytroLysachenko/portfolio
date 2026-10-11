@@ -1,6 +1,7 @@
 ---
 import "../styles/fonts.css";
 import "../styles/global.css";
+import { bio } from "../lib/seo";
 
 interface Props {
   title?: string;
@@ -10,8 +11,8 @@ interface Props {
 }
 
 const {
-  title = "Dmytro Lysachenko | Full-Stack Web & Mobile Developer",
-  description = "Full-stack web & mobile developer specializing in TypeScript, React, Next.js, Astro, React Native, Node.js, and Express.js. Based in Bydgoszcz, open to opportunities across Poland and EU. Let's build something amazing together!",
+  title = "Dmytro Lysachenko | Software Engineer",
+  description = bio,
   image = "seo-preview.webp",
   jsonLd,
 } = Astro.props;

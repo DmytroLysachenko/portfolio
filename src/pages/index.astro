@@ -16,7 +16,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import {
   basePerson,
   bio,
-  professionalService,
   webPage,
   website,
 } from "../lib/seo";
@@ -45,7 +44,6 @@ const jsonLd = [
     image: seoPreview,
     about: person,
   }),
-  professionalService(siteUrl, person),
   {
     "@context": "https://schema.org",
     ...person,
@@ -80,7 +78,7 @@ const projects = (await getCollection("project"))
       <header class="hero">
         <Hero
           title="Hello, my name is Dmytro Lysachenko"
-          tagline="I am a Creative Fullstack Developer based in Bydgoszcz, Poland."
+          tagline="Software developer in Bydgoszcz, Poland, working with TypeScript, React, Next.js, and PHP."
           align="start"
         >
           <div class="roles">

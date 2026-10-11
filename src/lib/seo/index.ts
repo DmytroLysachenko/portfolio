@@ -17,12 +17,12 @@ interface WebPageOptions {
 }
 
 const bio =
-  "Full-stack developer specializing in modern web architectures and AI-driven automation. Experienced in building scalable applications with React/Next.js and extending system intelligence through Agentic AI, MCP servers, and serverless cloud solutions.";
+  "Software developer working with TypeScript, React, Next.js, full-stack applications, and custom WordPress sites with PHP. Experience with APIs, cloud integrations, and reusable UI components.";
 
 const basePerson = (siteUrl: URL) => ({
   "@type": "Person",
   name: "Dmytro Lysachenko",
-  jobTitle: "Full-Stack Developer",
+  jobTitle: "Software Engineer",
   description: bio,
   url: siteUrl.href,
   image: new URL("seo-preview.webp", siteUrl).href,
@@ -37,10 +37,20 @@ const basePerson = (siteUrl: URL) => ({
     "TypeScript",
     "JavaScript",
     "React",
+    "React Native",
+    "Expo",
     "Node.js",
     "Next.js",
+    "PHP",
+    "WordPress",
+    "Sage 11",
+    "Acorn",
+    "Laravel",
+    "Blade",
+    "Advanced Custom Fields (ACF)",
     "Astro",
     "GCP (Google Cloud Platform)",
+    "Docker",
     "Agentic AI",
     "Model Context Protocol (MCP)",
     "Xano",
@@ -49,6 +59,7 @@ const basePerson = (siteUrl: URL) => ({
   ],
   hasOccupation: [
     { "@type": "Occupation", name: "Web Developer" },
+    { "@type": "Occupation", name: "Software Engineer" },
     { "@type": "Occupation", name: "Full-Stack Engineer" },
     { "@type": "Occupation", name: "AI Automation Developer" },
   ],
@@ -64,29 +75,6 @@ const website = (siteUrl: URL) => ({
   name: "Dmytro Lysachenko | Portfolio",
   url: siteUrl.href,
   inLanguage: "en",
-});
-
-const professionalService = (
-  siteUrl: URL,
-  person: Record<string, unknown>,
-) => ({
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Dmytro Lysachenko",
-  url: siteUrl.href,
-  founder: person,
-  areaServed: ["Poland", "Europe", "Worldwide"],
-  serviceType: [
-    "Web Development",
-    "Full-Stack Development",
-    "AI Automation & Agentic Solutions",
-    "Cloud Integrations",
-  ],
-  contactPoint: {
-    "@type": "ContactPoint",
-    contactType: "business inquiries",
-    email: "mailto:dlysachenko98@gmail.com",
-  },
 });
 
 const webPage = ({
@@ -188,23 +176,32 @@ const softwareApplication = ({
   siteUrl: URL;
   person: Record<string, unknown>;
   image?: string;
-}) => ({
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: entry.data.title,
-  description: entry.data.description,
-  url: new URL(`/project/${entry.id}/`, siteUrl).href,
-  applicationCategory: "WebApplication",
-  operatingSystem: "Web",
-  keywords: entry.data.tags.join(", "),
-  author: person,
-  datePublished: entry.data.publishDate.toISOString(),
-  isPartOf: {
-    "@type": "WebSite",
-    url: siteUrl.href,
-  },
-  ...(image ? { image } : {}),
-});
+}) => {
+  const isMobileApp = entry.data.tags.includes("Mobile App");
+  const isBackendApi = entry.data.tags.includes("Backend Development");
+
+  return {
+    "@context": "https://schema.org",
+    "@type": isMobileApp ? "MobileApplication" : "SoftwareApplication",
+    name: entry.data.title,
+    description: entry.data.description,
+    url: new URL(`/project/${entry.id}/`, siteUrl).href,
+    applicationCategory: isMobileApp
+      ? "MobileApplication"
+      : isBackendApi
+        ? "Backend API"
+        : "WebApplication",
+    ...(!isMobileApp && !isBackendApi ? { operatingSystem: "Web" } : {}),
+    keywords: entry.data.tags.join(", "),
+    author: person,
+    datePublished: entry.data.publishDate.toISOString(),
+    isPartOf: {
+      "@type": "WebSite",
+      url: siteUrl.href,
+    },
+    ...(image ? { image } : {}),
+  };
+};
 
 export {
   basePerson,
@@ -212,7 +209,6 @@ export {
   breadcrumbs,
   collectionPage,
   itemList,
-  professionalService,
   softwareApplication,
   webPage,
   website,
