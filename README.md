@@ -1,6 +1,6 @@
 # 🌟 My Portfolio Website
 
-![Portfolio Screenshot](/public/preview-screenshot.webp) <!-- Replace with actual screenshot URL -->
+![Portfolio preview](/public/preview-screenshot.webp)
 
 ## 🚀 Overview
 
