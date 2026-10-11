@@ -74,7 +74,7 @@ export const certificates: ICertificateItem[] = [
     ],
   },
   {
-    name: "Google Umiejetnosci Jutra certificate",
+    name: "Certyfikat Google Umiejętności Jutra",
     link: "/certificates/google-uj-cert.pdf",
   },
 ];
