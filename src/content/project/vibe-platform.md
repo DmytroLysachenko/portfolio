@@ -3,7 +3,7 @@ title: Vibe Platform
 publishDate: 2025-08-16 00:00:00
 img: vibe-coding.webp
 img_alt: An AI-powered coding platform with an agent panel, project file tree, and live code preview sandbox.
-description: Vibe is an AI-powered coding platform that lets users spin up mini projects, collaborate with an intelligent coding agent, and instantly preview results in a safe sandbox. It provides personal workspaces with authentication, project and file management, execution logs, and basic billing. Users can experiment, generate new code, refine existing features, and see their changes come to life immediately in the browser.
+description: Vibe is a Next.js coding workspace where users can ask an AI agent to edit project files and preview the result in an e2b sandbox. It uses tRPC for typed API calls, Inngest for background jobs, and Clerk for authentication.
 tags:
   - Web Application
   - Full-Stack Development
