@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Windows download metadata sidecars
+*:Zone.Identifier
+*:mshield
