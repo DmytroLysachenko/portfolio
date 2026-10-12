@@ -36,6 +36,28 @@ export const certificates: ICertificateItem[] = [
     ],
   },
   {
+    name: "University of Alberta Software Design and Architecture specialization certificate",
+    link: "/certificates/coursera-software-design-and-architecture.pdf",
+    children: [
+      {
+        name: "Object-Oriented Design",
+        link: "/certificates/coursera-object-oriented-design.pdf",
+      },
+      {
+        name: "Design Patterns",
+        link: "/certificates/coursera-design-patterns.pdf",
+      },
+      {
+        name: "Software Architecture",
+        link: "/certificates/coursera-software-architecture.pdf",
+      },
+      {
+        name: "Service-Oriented Architecture",
+        link: "/certificates/coursera-service-oriented-architecture.pdf",
+      },
+    ],
+  },
+  {
     name: "Microsoft Back-End Developer career certificate",
     link: "/certificates/microsoft-backed-dev-cert.pdf",
     children: [
